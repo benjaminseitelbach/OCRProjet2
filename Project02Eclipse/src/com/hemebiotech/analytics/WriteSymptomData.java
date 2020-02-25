@@ -22,38 +22,33 @@ public class WriteSymptomData implements ISymptomWriter {
 	}
 	
 	@Override
-	public void write() throws NoFilePathException {
+	public void write() {
 
-		//if(Config.RESULTFILEPATH != "") {
-			try {
+		try {
 				
-				FileWriter writer = new FileWriter (Config.RESULTFILENAME);
-				Set<Entry<String, Integer>> setHm = this.result.entrySet();
+			FileWriter writer = new FileWriter (Config.RESULTFILENAME);
+			Set<Entry<String, Integer>> setHm = this.result.entrySet();
 
-			    Iterator<Entry<String, Integer>> it = setHm.iterator();
+			Iterator<Entry<String, Integer>> it = setHm.iterator();
 			    
-			    while(it.hasNext()){
+			while(it.hasNext()){
 			    	
-			    	//Get entry
-			        Entry<String, Integer> e = it.next();
+				//Get entry
+			    Entry<String, Integer> e = it.next();
 			        
-			        //Line which will be written in the result file (symptom : counter)
-			        String line = e.getKey() + " : " + e.getValue() + "\n";
+			    //Line which will be written in the result file (symptom : counter)
+			    String line = e.getKey() + " : " + e.getValue() + "\n";
 			         
-			        writer.write(line);
+			    writer.write(line);
 			        
-			    }
-
-				writer.close();
-				
-			} catch (IOException e) {
-				e.printStackTrace();
 			}
-		/*	
-		} else {
-			throw new NoFilePathException();
+
+			writer.close();
+				
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		*/
+
 	}
 
 }

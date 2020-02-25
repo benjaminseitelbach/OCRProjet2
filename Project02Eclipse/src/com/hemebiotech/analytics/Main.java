@@ -9,20 +9,14 @@ public class Main {
 		
 		System.out.println("Program start");
 		
-		try {
+		List<String> symptoms = new ReadSymptomDataFromFile().getSymptoms();
 			
-			List<String> symptoms = new ReadSymptomDataFromFile().getSymptoms();
-			
-			Map<String, Integer> symptomsCounter = new SymptomsCounter(symptoms).getSymptomsCounter();
+		Map<String, Integer> symptomsCounter = new SymptomsCounter(symptoms).getSymptomsCounter();
 			 			
-			Map<String, Integer> sortedSymptomsCounter = new AlphabeticalOrder(symptomsCounter).getSymptomsCounterAlphabetically();
+		Map<String, Integer> sortedSymptomsCounter = new AlphabeticalOrder(symptomsCounter).getSymptomsCounterAlphabetically();
 			
-			new WriteSymptomData(sortedSymptomsCounter).write();
-				
-		} catch (NoFilePathException e) {
-			e.printStackTrace();
-		}
-		
+		new WriteSymptomData(sortedSymptomsCounter).write();
+						
 		System.out.println("Program end");
 
 	}

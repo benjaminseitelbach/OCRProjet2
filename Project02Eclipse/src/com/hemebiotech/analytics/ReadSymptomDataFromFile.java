@@ -19,43 +19,35 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	 */
 
 	@Override
-	public List<String> getSymptoms() throws NoFilePathException {
+	public List<String> getSymptoms() {
 		List<String> result = new ArrayList<>();
 		
 		BufferedReader reader = null;
 		
-		//if (Config.SOURCEFILEPATH != "") {
-
+		try {
+			reader = new BufferedReader (new FileReader(Config.SOURCEFILENAME));
+				
 			try {
-				reader = new BufferedReader (new FileReader(Config.SOURCEFILENAME));
-				
-				try {
-					String line = reader.readLine();
+				String line = reader.readLine();
 					
-					//Loop on all file
-					while (line != null) {
+				//Loop on all file
+				while (line != null) {
 						
-						//Add line to the list
-						result.add(line);
+					result.add(line);
 						
-						line = reader.readLine();	// get another symptom
-					}
-					
-					reader.close();
-				} catch (IOException e) {
-					e.printStackTrace();
+					line = reader.readLine();	
 				}
+					
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 				
 			
-			} catch(FileNotFoundException e) {
-				e.printStackTrace();
-			} 
+		} catch(FileNotFoundException e) {
+			e.printStackTrace();
+		} 
 			
-			/*
-		} else {
-			throw new NoFilePathException();
-		}
-		*/
 		return result;
 		
 	}
