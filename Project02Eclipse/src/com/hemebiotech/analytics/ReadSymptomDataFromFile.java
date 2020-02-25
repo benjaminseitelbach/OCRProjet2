@@ -24,10 +24,10 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 		
 		BufferedReader reader = null;
 		
-		if (Config.SOURCEFILEPATH != "") {
+		//if (Config.SOURCEFILEPATH != "") {
 
 			try {
-				reader = new BufferedReader (new FileReader(Config.SOURCEFILEPATH));
+				reader = new BufferedReader (new FileReader(Config.SOURCEFILENAME));
 				
 				try {
 					String line = reader.readLine();
@@ -51,11 +51,11 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 				e.printStackTrace();
 			} 
 			
-	
+			/*
 		} else {
 			throw new NoFilePathException();
 		}
-		
+		*/
 		return result;
 		
 	}
